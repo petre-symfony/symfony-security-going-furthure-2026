@@ -144,6 +144,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
         return $this;
     }
 
+    public function isEnabled(): bool {
+        return $this->disabledAt === null;
+
+    }
+
     public function getDisabledAt(): ?\DateTimeImmutable {
         return $this->disabledAt;
     }
