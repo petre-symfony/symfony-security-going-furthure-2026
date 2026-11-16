@@ -49,7 +49,7 @@ final class StarshipAdminController extends AbstractController {
     }
 
     #[Route('/{id}/edit', name: 'app_starship_admin_edit', methods: ['GET', 'POST'])]
-    #[IsGranted('edit', subject: 'starship')]
+    #[IsGranted('edit', subject: 'starship', statusCode: Response::HTTP_NOT_FOUND)]
     public function edit(Request $request, Starship $starship, EntityManagerInterface $entityManager): Response {
         $form = $this->createForm(StarshipType::class, $starship);
         $form->handleRequest($request);
