@@ -11,6 +11,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 final class UserChecker implements UserCheckerInterface  {
 
     public function checkPreAuth(UserInterface $user): void {
+
+    }
+
+    public function checkPostAuth(UserInterface $user, ?TokenInterface $token = null): void {
         if (!$user instanceof User) {
             return;
         }
@@ -18,9 +22,5 @@ final class UserChecker implements UserCheckerInterface  {
         if (!$user->isEnabled()) {
             throw new DisabledException();
         }
-    }
-
-    public function checkPostAuth(UserInterface $user, ?TokenInterface $token = null): void {
-
     }
 }
