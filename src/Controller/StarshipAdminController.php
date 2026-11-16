@@ -67,7 +67,7 @@ final class StarshipAdminController extends AbstractController {
     }
 
     #[Route('/{id}', name: 'app_starship_admin_delete', methods: ['POST'])]
-    #[IsGranted('delete', subject: 'starship')]
+    #[IsGranted('delete', subject: 'starship', statusCode: Response::HTTP_NOT_FOUND )]
     public function delete(Request $request, Starship $starship, EntityManagerInterface $entityManager): Response {
         if ($this->isCsrfTokenValid('delete' . $starship->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($starship);
