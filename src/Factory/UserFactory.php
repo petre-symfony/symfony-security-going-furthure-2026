@@ -18,6 +18,10 @@ final class UserFactory extends PersistentObjectFactory {
     public function __construct(private UserPasswordHasherInterface $passwordHasher) {
     }
 
+    public function disabled():self {
+        return $this->with(['disabledAt' => new \DateTimeImmutable('now')]);
+    }
+
     #[\Override]
     public static function class(): string {
         return User::class;

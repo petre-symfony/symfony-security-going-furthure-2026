@@ -13,7 +13,7 @@ use Zenstruck\Foundry\Story;
 #[AsFixture(name: 'main')]
 final class AppStory extends Story {
     public function build(): void {
-        UserFactory::createOne([
+        UserFactory::new()->disabled()->create([
             'email' => 'picard@enterprise.space',
             'password' => 'makeitso',
             'name' => 'Jean-Luc Picard',
