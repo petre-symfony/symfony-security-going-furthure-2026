@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $lastLogin = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $disabledAt = null;
+
     public function getId(): ?int {
         return $this->id;
     }
@@ -137,6 +140,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
 
     public function setLastLogin(?\DateTimeImmutable $lastLogin): static {
         $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    public function getDisabledAt(): ?\DateTimeImmutable {
+        return $this->disabledAt;
+    }
+
+    public function setDisabledAt(?\DateTimeImmutable $disabledAt): static {
+        $this->disabledAt = $disabledAt;
 
         return $this;
     }
