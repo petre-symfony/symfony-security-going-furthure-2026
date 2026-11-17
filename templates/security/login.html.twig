@@ -59,17 +59,22 @@
                     <input type="hidden" name="_csrf_token" data-controller="csrf-protection"
                            value="{{ csrf_token('authenticate') }}">
 
-                    <div
-                        class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80">
-                        <input type="checkbox" checked name="_remember_me" id="_remember_me"
-                               class="rounded border-white/20 bg-transparent text-cyan-400 focus:ring-cyan-400">
-                        <label for="_remember_me">Remember me</label>
-                    </div>
+                    {% if app.user %}
+                        <input type="hidden" name="_remember_me" value="1" />
+                    {% else %}
+                        <div
+                            class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80">
+                            <input type="checkbox" checked name="_remember_me" id="_remember_me"
+                                   class="rounded border-white/20 bg-transparent text-cyan-400 focus:ring-cyan-400">
+                            <label for="_remember_me">Remember me</label>
+                        </div>
+                    {% endif %}
+
 
                     <button
                         class="w-full rounded-lg bg-green-700 px-5 py-3 font-semibold text-white transition hover:bg-green-800 cursor-pointer"
                         type="submit">
-                        Sign in
+                        {{ app.user ? 'Confirm' : 'Sign in' }}
                     </button>
                 </form>
             </div>
