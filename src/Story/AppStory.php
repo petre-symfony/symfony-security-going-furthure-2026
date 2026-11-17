@@ -30,7 +30,7 @@ final class AppStory extends Story {
             'email' => 'janeway@starfleet.space',
             'password' => 'coffeeblack',
             'name' => 'Kathryn Janeway',
-            'roles' => ['ROLE_ADMIN'],
+            'roles' => ['ROLE_SUPER_ADMIN'],
         ]);
 
         StarshipFactory::createOne([
