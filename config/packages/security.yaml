@@ -25,6 +25,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+                target_path_parameter: referrer
             logout:
                 path: app_logout
                 enable_csrf: true

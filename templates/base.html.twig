@@ -92,7 +92,7 @@
                     <a class="hover:text-amber-400 pt-2" href="{{ path('app_register') }}">
                         Register
                     </a>
-                    <a class="hover:text-amber-400 pt-2" href="{{ path('app_login', {_target_path: app.request.pathInfo}) }}">
+                    <a class="hover:text-amber-400 pt-2" href="{{ path('app_login', {referrer: app.request.pathInfo}) }}">
                         Login
                     </a>
                 {% endif %}
