@@ -17,7 +17,7 @@
                         <h1 class="mt-3 text-4xl font-semibold">Confirm your password!</h1>
                     {% else %}
                         <h1 class="mt-3 text-4xl font-semibold">Sign in</h1>
-                        <p class="mt-3 text-sm text-white/70">Use your email and password to continue.</p>
+                        <p class="mt-3 text-sm text-white/70">Use your email/username and password to continue.</p>
                     {% endif %}
 
                 </div>
@@ -33,9 +33,9 @@
                         <input type="hidden" name="_username" value="{{ app.user.userIdentifier }}" />
                     {% else %}
                         <div>
-                            <label for="username" class="mb-2 block text-sm font-medium text-white/80">Email</label>
+                            <label for="username" class="mb-2 block text-sm font-medium text-white/80">Email or Username</label>
                             <input
-                                type="email"
+                                type="text"
                                 value="{{ last_username }}"
                                 name="_username"
                                 id="username"
