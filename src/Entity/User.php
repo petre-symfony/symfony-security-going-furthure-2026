@@ -11,7 +11,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -48,6 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $disabledAt = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $username = null;
 
