@@ -15,6 +15,7 @@ final class AppStory extends Story {
     public function build(): void {
         UserFactory::createOne([
             'email' => 'picard@enterprise.space',
+            'username' => 'picard',
             'password' => 'makeitso',
             'name' => 'Jean-Luc Picard',
             'roles' => ['ROLE_CAPTAIN'],
@@ -28,6 +29,7 @@ final class AppStory extends Story {
 
         UserFactory::createOne([
             'email' => 'janeway@starfleet.space',
+            'username' => 'janeway',
             'password' => 'coffeeblack',
             'name' => 'Kathryn Janeway',
             'roles' => ['ROLE_SUPER_ADMIN'],
