@@ -51,8 +51,10 @@
                                    href="{{ path('app_user_admin_show', {'id': user.id}) }}">show</a>
                                 <a class="bg-red-500 hover:bg-red-600 rounded p-1.5"
                                    href="{{ path('app_user_admin_edit', {'id': user.id}) }}">edit</a>
-                                <a class="bg-indigo-500 hover:bg-indigo-600 rounded p-1.5"
-                                   href="{{ impersonation_path(user.userIdentifier) }}">switch to</a>
+                                {% if is_granted('CAN_IMPERSONATE', user) %}
+                                    <a class="bg-indigo-500 hover:bg-indigo-600 rounded p-1.5"
+                                        href="{{ impersonation_path(user.userIdentifier) }}">switch to</a>
+                                {% endif %}
                             </div>
                         </td>
                     </tr>
