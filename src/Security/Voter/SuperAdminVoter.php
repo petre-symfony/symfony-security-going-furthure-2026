@@ -6,7 +6,6 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
 use Symfony\Component\Security\Core\Authorization\Voter\Vote;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 final class SuperAdminVoter extends Voter {
 
@@ -16,7 +15,8 @@ final class SuperAdminVoter extends Voter {
         AuthenticatedVoter::IS_AUTHENTICATED,
         AuthenticatedVoter::IS_REMEMBERED,
         AuthenticatedVoter::IS_IMPERSONATOR,
-        AuthenticatedVoter::PUBLIC_ACCESS
+        AuthenticatedVoter::PUBLIC_ACCESS,
+        'CAN_IMPERSONATE'
     ];
     protected function supports(string $attribute, mixed $subject): bool {
         return is_string($attribute) && !in_array($attribute, self::EXCLUSIONS, true);
