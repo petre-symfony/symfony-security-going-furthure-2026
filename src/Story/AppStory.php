@@ -35,6 +35,9 @@ final class AppStory extends Story {
             'roles' => ['ROLE_SUPER_ADMIN'],
         ]);
 
+        UserFactory::createMany(5, ['roles' => ['ROLE_ADMIN']]);
+        UserFactory::createMany(5, ['roles' => ['ROLE_CAPTAIN']]);
+
         StarshipFactory::createOne([
             'name' => 'USS LeafyCruiser (NCC-0001)',
             'class' => 'Garden',
