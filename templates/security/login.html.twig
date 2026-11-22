@@ -81,6 +81,12 @@
                         {{ app.user ? 'Confirm' : 'Sign in' }}
                     </button>
                 </form>
+
+                {% if not app.user %}
+                <p class="mt-4 text-center text-sm">
+                    <a class="font-medium text-cyan-300 transition hover:text-cyan-200" href="{{ path('app_forgot_password_request') }}">Forgot your password?</a>
+                </p>
+                {% endif %}
             </div>
         </div>
     </section>
