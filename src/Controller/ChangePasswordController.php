@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ChangePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,8 +21,21 @@ final class ChangePasswordController extends AbstractController {
         UserPasswordHasherInterface $passwordHasher,
         Request $request
     ): Response {
-        return $this->render('security/change_password.html.twig, [
-            'controller_name' => 'ChangePasswordController',
+        $form = $this->createForm(ChangePasswordFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $form->get('plainPassworf')->getData();
+
+            $user->setPassword($passwordHasher->hashPassword($user, $password));
+            $em->flush();
+
+            $this->addFlash('success', 'Your password has been changed.');
+
+            return $this->redirectToRoute('app_homepage');
+        };
+        return $this->render('security/change_password.html.twig', [
+            'form' => $form,
         ]);
     }
 }
