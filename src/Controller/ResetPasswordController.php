@@ -8,6 +8,7 @@ use App\Form\ResetPasswordRequestFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,7 +72,12 @@ class ResetPasswordController extends AbstractController {
      * Validates and process the reset URL that the user clicked in their email.
      */
     #[Route('/reset/{token}', name: 'app_reset_password')]
-    public function reset(Request $request, UserPasswordHasherInterface $passwordHasher, TranslatorInterface $translator, ?string $token = null): Response {
+    public function reset(
+        Request $request,
+        UserPasswordHasherInterface $passwordHasher,
+        TranslatorInterface $translator,
+        Security $security,
+        ?string $token = null): Response {
         if ($token) {
             // We store the token in session and remove it from the URL, to avoid the URL being
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
@@ -115,6 +121,9 @@ class ResetPasswordController extends AbstractController {
 
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
+
+            $this->addFlash('success', 'Your password has been reset successfully, you are now logged in.');
+            $security->login($user);
 
             return $this->redirectToRoute('app_homepage');
         }
