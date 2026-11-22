@@ -25,7 +25,7 @@ final class ChangePasswordController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $form->get('plainPassworf')->getData();
+            $password = $form->get('plainPassword')->getData();
 
             $user->setPassword($passwordHasher->hashPassword($user, $password));
             $em->flush();
