@@ -21,7 +21,7 @@ final class ChangePasswordController extends AbstractController {
         UserPasswordHasherInterface $passwordHasher,
         Request $request
     ): Response {
-        $form = $this->createForm(ChangePasswordFormType::class);
+        $form = $this->createForm(ChangePasswordFormType::class, options:  ['require_current' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
