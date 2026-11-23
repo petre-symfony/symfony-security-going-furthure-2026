@@ -17,6 +17,7 @@
 
                 {{ form_start(registrationForm, { attr: { novalidate: true, class: 'space-y-6' } }) }}
                 {{ form_row(registrationForm.email, { label_attr: { class: 'text-sm font-medium text-white/80' } }) }}
+                {{ form_row(registrationForm.username, { label_attr: { class: 'text-sm font-medium text-white/80' } }) }}
                 {{ form_row(registrationForm.name, { label_attr: { class: 'text-sm font-medium text-white/80' } }) }}
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Password',
