@@ -29,6 +29,14 @@ class RegistrationController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $limit = $limiterFactory->create($request->getClientIp())->consume();
+
+            if (!$limit->isAccepted()) {
+                $this->addFlash('error', 'Too many registration attempts. Please try again later.');
+
+                return $this->redirectToRoute('app_register');
+            }
+
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
 
